@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Entites\Entites.csproj" />
+    <ProjectReference Include="..\Interface\IBusiness.csproj" />
+    <ProjectReference Include="..\Persistance\Persistance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="iGloblalPayNeeyamoSvr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>iGloblalPayNeeyamoSvr.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,2585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HomeFoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <EntityType Name="MAS_AddressType">
+          <Key>
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddressTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Area">
+          <Key>
+            <PropertyRef Name="UniqueId" />
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_ChefType">
+          <Key>
+            <PropertyRef Name="ChefTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChefTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChefType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_DeliveryLocation">
+          <Key>
+            <PropertyRef Name="DeliveyPointId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DeliveyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeliveryPointName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Discount">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DiscountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FoodId" Type="int" />
+          <Property Name="DiscountTypeID" Type="int" />
+          <Property Name="DiscountPrice" Type="int" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="int" Nullable="false" />
+          <Property Name="ValidityFrom" Type="datetime" Nullable="false" />
+          <Property Name="ValidityTo" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeID" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DiscountTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="FoodTypeID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_FoodType">
+          <Key>
+            <PropertyRef Name="FoodTypeID" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FoodTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FoodTypeCode" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_MealPack">
+          <Key>
+            <PropertyRef Name="MealPackId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MealPackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MealPackName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TotalMealCount" Type="int" Nullable="false" />
+          <Property Name="CurrentMealCount" Type="int" Nullable="false" />
+          <Property Name="CurrentPrice" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="int" Nullable="false" />
+          <Property Name="GSTPrice" Type="int" Nullable="false" />
+          <Property Name="GSTPercentage" Type="int" Nullable="false" />
+          <Property Name="OrderTypeId" Type="int" Nullable="false" />
+          <Property Name="OrderTypeCode" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_OrderType">
+          <Key>
+            <PropertyRef Name="OrderTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderTypeCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PaymentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Price">
+          <Key>
+            <PropertyRef Name="PriceId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PriceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GSTPrice" Type="varchar" MaxLength="50" />
+          <Property Name="GSTPercentage" Type="varchar" MaxLength="10" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAS_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_ChefDetails">
+          <Key>
+            <PropertyRef Name="ChefId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChefId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChefFullName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ChefTypeId" Type="int" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AlternateMobileNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressLine1" Type="varchar(max)" Nullable="false" />
+          <Property Name="AddressLine2" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_ChefOrder">
+          <Key>
+            <PropertyRef Name="ChefOrderId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChefOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderGivenDatetime" Type="date" Nullable="false" />
+          <Property Name="ChefDeliveredDateTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="AssignedPickUpDate" Type="date" Nullable="false" />
+          <Property Name="AssignedPickUpTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TaskStatusID" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_ChefOtherDetails">
+          <Key>
+            <PropertyRef Name="ChefOtherDetailID" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChefOtherDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChefId" Type="int" Nullable="false" />
+          <Property Name="FoodTypeId" Type="int" Nullable="false" />
+          <Property Name="SpecialistAt" Type="varchar" MaxLength="20" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="AvaiableDays" Type="int" />
+          <Property Name="AvailableTime" Type="varchar" MaxLength="10" />
+          <Property Name="AvaiableForLunch" Type="bit" Nullable="false" />
+          <Property Name="AvailableForDinner" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_DeliveryDetails">
+          <Key>
+            <PropertyRef Name="DeliveryDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DeliveryDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="ScheduleDeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDelivered" Type="bit" />
+          <Property Name="DeliveryPointId" Type="int" Nullable="false" />
+          <Property Name="AddressDetailId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_LoginDetail">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_MapOrderToChef">
+          <Key>
+            <PropertyRef Name="MapOrderID" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MapOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ChefId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_MealPackMapping">
+          <Key>
+            <PropertyRef Name="MealPackMappingId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MealPackMappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MealPackId" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_MealPackProcessing">
+          <Key>
+            <PropertyRef Name="MealPackProcessingId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MealPackProcessingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MealPackId" Type="int" Nullable="false" />
+          <Property Name="TotalMealCount" Type="int" Nullable="false" />
+          <Property Name="UsedMealCount" Type="int" Nullable="false" />
+          <Property Name="RemainingMealCount" Type="int" Nullable="false" />
+          <Property Name="ScheduleDates" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="OrderTypeId" Type="int" Nullable="false" />
+          <Property Name="OrderStatusId" Type="int" Nullable="false" />
+          <Property Name="OrderCreatedDatetime" Type="datetime" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="TotalQuantity" Type="int" />
+          <Property Name="ActualPrice" Type="int" />
+          <Property Name="TotalPrice" Type="int" />
+          <Property Name="TotalDiscount" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_OrderAppliedDiscount">
+          <Key>
+            <PropertyRef Name="AppliedDiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AppliedDiscountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountId" Type="int" Nullable="false" />
+          <Property Name="SpecialDiscountId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_SpecialDiscount">
+          <Key>
+            <PropertyRef Name="SpecialDiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpecialDiscountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiscountTypeID" Type="int" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDiscountUsed" Type="bit" Nullable="false" />
+          <Property Name="DiscountPrice" Type="int" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="int" Nullable="false" />
+          <Property Name="ValidityFrom" Type="datetime" />
+          <Property Name="ValidityTo" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_UserAddressDetails">
+          <Key>
+            <PropertyRef Name="AddressDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddressDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AddressTypeID" Type="int" Nullable="false" />
+          <Property Name="DeliveryPointId" Type="int" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressLine1" Type="varchar(max)" Nullable="false" />
+          <Property Name="AddressLine2" Type="varchar(max)" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_UserDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__MAS_Area__CityId__4316F928">
+          <End Role="MAS_City" Type="Self.MAS_City" Multiplicity="0..1" />
+          <End Role="MAS_Area" Type="Self.MAS_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="MAS_Area">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Disco__Disco__619B8048">
+          <End Role="MAS_DiscountType" Type="Self.MAS_DiscountType" Multiplicity="0..1" />
+          <End Role="MAS_Discount" Type="Self.MAS_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="MAS_Discount">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Disco__FoodI__60A75C0F">
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="0..1" />
+          <End Role="MAS_Discount" Type="Self.MAS_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MAS_Discount">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Food__Catego__5535A963">
+          <End Role="MAS_Category" Type="Self.MAS_Category" Multiplicity="0..1" />
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="MAS_Food">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Food__FoodTy__5629CD9C">
+          <End Role="MAS_FoodType" Type="Self.MAS_FoodType" Multiplicity="0..1" />
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_FoodType">
+              <PropertyRef Name="FoodTypeID" />
+            </Principal>
+            <Dependent Role="MAS_Food">
+              <PropertyRef Name="FoodTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_MealP__Order__1F98B2C1">
+          <End Role="MAS_OrderType" Type="Self.MAS_OrderType" Multiplicity="1" />
+          <End Role="MAS_MealPack" Type="Self.MAS_MealPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderType">
+              <PropertyRef Name="OrderTypeId" />
+            </Principal>
+            <Dependent Role="MAS_MealPack">
+              <PropertyRef Name="OrderTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Price__FoodI__59FA5E80">
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="1" />
+          <End Role="MAS_Price" Type="Self.MAS_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MAS_Price">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__ChefT__76969D2E">
+          <End Role="MAS_ChefType" Type="Self.MAS_ChefType" Multiplicity="1" />
+          <End Role="TRN_ChefDetails" Type="Self.TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_ChefType">
+              <PropertyRef Name="ChefTypeId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__CityI__778AC167">
+          <End Role="MAS_City" Type="Self.MAS_City" Multiplicity="1" />
+          <End Role="TRN_ChefDetails" Type="Self.TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__UserI__787EE5A0">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_ChefDetails" Type="Self.TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefO__ChefI__7C4F7684">
+          <End Role="TRN_ChefDetails" Type="Self.TRN_ChefDetails" Multiplicity="1" />
+          <End Role="TRN_ChefOtherDetails" Type="Self.TRN_ChefOtherDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefId" />
+            </Principal>
+            <Dependent Role="TRN_ChefOtherDetails">
+              <PropertyRef Name="ChefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefO__FoodT__7D439ABD">
+          <End Role="MAS_FoodType" Type="Self.MAS_FoodType" Multiplicity="1" />
+          <End Role="TRN_ChefOtherDetails" Type="Self.TRN_ChefOtherDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_FoodType">
+              <PropertyRef Name="FoodTypeID" />
+            </Principal>
+            <Dependent Role="TRN_ChefOtherDetails">
+              <PropertyRef Name="FoodTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Addre__160F4887">
+          <End Role="TRN_UserAddressDetails" Type="Self.TRN_UserAddressDetails" Multiplicity="1" />
+          <End Role="TRN_DeliveryDetails" Type="Self.TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserAddressDetails">
+              <PropertyRef Name="AddressDetailId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="AddressDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Deliv__151B244E">
+          <End Role="MAS_DeliveryLocation" Type="Self.MAS_DeliveryLocation" Multiplicity="1" />
+          <End Role="TRN_DeliveryDetails" Type="Self.TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DeliveryLocation">
+              <PropertyRef Name="DeliveyPointId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="DeliveryPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Order__14270015">
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="1" />
+          <End Role="TRN_DeliveryDetails" Type="Self.TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Login__UserI__72C60C4A">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_LoginDetail" Type="Self.TRN_LoginDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_LoginDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MapOr__ChefI__31B762FC">
+          <End Role="TRN_ChefDetails" Type="Self.TRN_ChefDetails" Multiplicity="1" />
+          <End Role="TRN_MapOrderToChef" Type="Self.TRN_MapOrderToChef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefId" />
+            </Principal>
+            <Dependent Role="TRN_MapOrderToChef">
+              <PropertyRef Name="ChefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MapOr__Order__30C33EC3">
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="1" />
+          <End Role="TRN_MapOrderToChef" Type="Self.TRN_MapOrderToChef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_MapOrderToChef">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__FoodI__245D67DE">
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="1" />
+          <End Role="TRN_MealPackMapping" Type="Self.TRN_MealPackMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackMapping">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__MealP__236943A5">
+          <End Role="MAS_MealPack" Type="Self.MAS_MealPack" Multiplicity="1" />
+          <End Role="TRN_MealPackMapping" Type="Self.TRN_MealPackMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_MealPack">
+              <PropertyRef Name="MealPackId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackMapping">
+              <PropertyRef Name="MealPackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__MealP__282DF8C2">
+          <End Role="MAS_MealPack" Type="Self.MAS_MealPack" Multiplicity="1" />
+          <End Role="TRN_MealPackProcessing" Type="Self.TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_MealPack">
+              <PropertyRef Name="MealPackId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="MealPackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__Order__2A164134">
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="1" />
+          <End Role="TRN_MealPackProcessing" Type="Self.TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__UserI__29221CFB">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_MealPackProcessing" Type="Self.TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Disco__19DFD96B">
+          <End Role="MAS_Discount" Type="Self.MAS_Discount" Multiplicity="1" />
+          <End Role="TRN_OrderAppliedDiscount" Type="Self.TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Discount">
+              <PropertyRef Name="DiscountId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="DiscountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__FoodI__0B91BA14">
+          <End Role="MAS_Food" Type="Self.MAS_Food" Multiplicity="1" />
+          <End Role="TRN_OrderDetails" Type="Self.TRN_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="TRN_OrderDetails">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__04E4BC85">
+          <End Role="MAS_OrderType" Type="Self.MAS_OrderType" Multiplicity="1" />
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderType">
+              <PropertyRef Name="OrderTypeId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="OrderTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__05D8E0BE">
+          <End Role="MAS_OrderStatus" Type="Self.MAS_OrderStatus" Multiplicity="1" />
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderStatus">
+              <PropertyRef Name="OrderStatusId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="OrderStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__0A9D95DB">
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="1" />
+          <End Role="TRN_OrderDetails" Type="Self.TRN_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__1BC821DD">
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="1" />
+          <End Role="TRN_OrderAppliedDiscount" Type="Self.TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Payme__06CD04F7">
+          <End Role="MAS_PaymentType" Type="Self.MAS_PaymentType" Multiplicity="1" />
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_PaymentType">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Speci__1AD3FDA4">
+          <End Role="TRN_SpecialDiscount" Type="Self.TRN_SpecialDiscount" Multiplicity="1" />
+          <End Role="TRN_OrderAppliedDiscount" Type="Self.TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SpecialDiscount">
+              <PropertyRef Name="SpecialDiscountId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="SpecialDiscountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__UserI__03F0984C">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_Order" Type="Self.TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Speci__Disco__0F624AF8">
+          <End Role="MAS_DiscountType" Type="Self.MAS_DiscountType" Multiplicity="1" />
+          <End Role="TRN_SpecialDiscount" Type="Self.TRN_SpecialDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="TRN_SpecialDiscount">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Speci__UserI__10566F31">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_SpecialDiscount" Type="Self.TRN_SpecialDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_SpecialDiscount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__Addre__6D0D32F4">
+          <End Role="MAS_AddressType" Type="Self.MAS_AddressType" Multiplicity="1" />
+          <End Role="TRN_UserAddressDetails" Type="Self.TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_AddressType">
+              <PropertyRef Name="AddressTypeId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__CityI__6EF57B66">
+          <End Role="MAS_City" Type="Self.MAS_City" Multiplicity="1" />
+          <End Role="TRN_UserAddressDetails" Type="Self.TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__Deliv__6E01572D">
+          <End Role="MAS_DeliveryLocation" Type="Self.MAS_DeliveryLocation" Multiplicity="1" />
+          <End Role="TRN_UserAddressDetails" Type="Self.TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DeliveryLocation">
+              <PropertyRef Name="DeliveyPointId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="DeliveryPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__UserI__6C190EBB">
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="1" />
+          <End Role="TRN_UserAddressDetails" Type="Self.TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserD__RoleI__68487DD7">
+          <End Role="MAS_Role" Type="Self.MAS_Role" Multiplicity="1" />
+          <End Role="TRN_UserDetail" Type="Self.TRN_UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TRN_UserDetail">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="homefoodModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_AddressType" EntityType="Self.MAS_AddressType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Area" EntityType="Self.MAS_Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Category" EntityType="Self.MAS_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_ChefType" EntityType="Self.MAS_ChefType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_City" EntityType="Self.MAS_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_DeliveryLocation" EntityType="Self.MAS_DeliveryLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Discount" EntityType="Self.MAS_Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_DiscountType" EntityType="Self.MAS_DiscountType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Food" EntityType="Self.MAS_Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_FoodType" EntityType="Self.MAS_FoodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_MealPack" EntityType="Self.MAS_MealPack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_OrderStatus" EntityType="Self.MAS_OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_OrderType" EntityType="Self.MAS_OrderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_PaymentType" EntityType="Self.MAS_PaymentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Price" EntityType="Self.MAS_Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAS_Role" EntityType="Self.MAS_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_ChefDetails" EntityType="Self.TRN_ChefDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_ChefOrder" EntityType="Self.TRN_ChefOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_ChefOtherDetails" EntityType="Self.TRN_ChefOtherDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_DeliveryDetails" EntityType="Self.TRN_DeliveryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_LoginDetail" EntityType="Self.TRN_LoginDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_MapOrderToChef" EntityType="Self.TRN_MapOrderToChef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_MealPackMapping" EntityType="Self.TRN_MealPackMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_MealPackProcessing" EntityType="Self.TRN_MealPackProcessing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_Order" EntityType="Self.TRN_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_OrderAppliedDiscount" EntityType="Self.TRN_OrderAppliedDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_OrderDetails" EntityType="Self.TRN_OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_SpecialDiscount" EntityType="Self.TRN_SpecialDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_UserAddressDetails" EntityType="Self.TRN_UserAddressDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_UserDetail" EntityType="Self.TRN_UserDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MAS_Area__CityId__4316F928" Association="Self.FK__MAS_Area__CityId__4316F928">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="MAS_Area" EntitySet="MAS_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Disco__Disco__619B8048" Association="Self.FK__MAS_Disco__Disco__619B8048">
+            <End Role="MAS_DiscountType" EntitySet="MAS_DiscountType" />
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Disco__FoodI__60A75C0F" Association="Self.FK__MAS_Disco__FoodI__60A75C0F">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Food__Catego__5535A963" Association="Self.FK__MAS_Food__Catego__5535A963">
+            <End Role="MAS_Category" EntitySet="MAS_Category" />
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Food__FoodTy__5629CD9C" Association="Self.FK__MAS_Food__FoodTy__5629CD9C">
+            <End Role="MAS_FoodType" EntitySet="MAS_FoodType" />
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_MealP__Order__1F98B2C1" Association="Self.FK__MAS_MealP__Order__1F98B2C1">
+            <End Role="MAS_OrderType" EntitySet="MAS_OrderType" />
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Price__FoodI__59FA5E80" Association="Self.FK__MAS_Price__FoodI__59FA5E80">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="MAS_Price" EntitySet="MAS_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__ChefT__76969D2E" Association="Self.FK__TRN_ChefD__ChefT__76969D2E">
+            <End Role="MAS_ChefType" EntitySet="MAS_ChefType" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__CityI__778AC167" Association="Self.FK__TRN_ChefD__CityI__778AC167">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__UserI__787EE5A0" Association="Self.FK__TRN_ChefD__UserI__787EE5A0">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefO__ChefI__7C4F7684" Association="Self.FK__TRN_ChefO__ChefI__7C4F7684">
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+            <End Role="TRN_ChefOtherDetails" EntitySet="TRN_ChefOtherDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefO__FoodT__7D439ABD" Association="Self.FK__TRN_ChefO__FoodT__7D439ABD">
+            <End Role="MAS_FoodType" EntitySet="MAS_FoodType" />
+            <End Role="TRN_ChefOtherDetails" EntitySet="TRN_ChefOtherDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Addre__160F4887" Association="Self.FK__TRN_Deliv__Addre__160F4887">
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Deliv__151B244E" Association="Self.FK__TRN_Deliv__Deliv__151B244E">
+            <End Role="MAS_DeliveryLocation" EntitySet="MAS_DeliveryLocation" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Order__14270015" Association="Self.FK__TRN_Deliv__Order__14270015">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Login__UserI__72C60C4A" Association="Self.FK__TRN_Login__UserI__72C60C4A">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_LoginDetail" EntitySet="TRN_LoginDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MapOr__ChefI__31B762FC" Association="Self.FK__TRN_MapOr__ChefI__31B762FC">
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+            <End Role="TRN_MapOrderToChef" EntitySet="TRN_MapOrderToChef" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MapOr__Order__30C33EC3" Association="Self.FK__TRN_MapOr__Order__30C33EC3">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_MapOrderToChef" EntitySet="TRN_MapOrderToChef" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__FoodI__245D67DE" Association="Self.FK__TRN_MealP__FoodI__245D67DE">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="TRN_MealPackMapping" EntitySet="TRN_MealPackMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__MealP__236943A5" Association="Self.FK__TRN_MealP__MealP__236943A5">
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+            <End Role="TRN_MealPackMapping" EntitySet="TRN_MealPackMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__MealP__282DF8C2" Association="Self.FK__TRN_MealP__MealP__282DF8C2">
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__Order__2A164134" Association="Self.FK__TRN_MealP__Order__2A164134">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__UserI__29221CFB" Association="Self.FK__TRN_MealP__UserI__29221CFB">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Disco__19DFD96B" Association="Self.FK__TRN_Order__Disco__19DFD96B">
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__FoodI__0B91BA14" Association="Self.FK__TRN_Order__FoodI__0B91BA14">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="TRN_OrderDetails" EntitySet="TRN_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__04E4BC85" Association="Self.FK__TRN_Order__Order__04E4BC85">
+            <End Role="MAS_OrderType" EntitySet="MAS_OrderType" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__05D8E0BE" Association="Self.FK__TRN_Order__Order__05D8E0BE">
+            <End Role="MAS_OrderStatus" EntitySet="MAS_OrderStatus" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__0A9D95DB" Association="Self.FK__TRN_Order__Order__0A9D95DB">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_OrderDetails" EntitySet="TRN_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__1BC821DD" Association="Self.FK__TRN_Order__Order__1BC821DD">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Payme__06CD04F7" Association="Self.FK__TRN_Order__Payme__06CD04F7">
+            <End Role="MAS_PaymentType" EntitySet="MAS_PaymentType" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Speci__1AD3FDA4" Association="Self.FK__TRN_Order__Speci__1AD3FDA4">
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__UserI__03F0984C" Association="Self.FK__TRN_Order__UserI__03F0984C">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Speci__Disco__0F624AF8" Association="Self.FK__TRN_Speci__Disco__0F624AF8">
+            <End Role="MAS_DiscountType" EntitySet="MAS_DiscountType" />
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Speci__UserI__10566F31" Association="Self.FK__TRN_Speci__UserI__10566F31">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__Addre__6D0D32F4" Association="Self.FK__TRN_UserA__Addre__6D0D32F4">
+            <End Role="MAS_AddressType" EntitySet="MAS_AddressType" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__CityI__6EF57B66" Association="Self.FK__TRN_UserA__CityI__6EF57B66">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__Deliv__6E01572D" Association="Self.FK__TRN_UserA__Deliv__6E01572D">
+            <End Role="MAS_DeliveryLocation" EntitySet="MAS_DeliveryLocation" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__UserI__6C190EBB" Association="Self.FK__TRN_UserA__UserI__6C190EBB">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserD__RoleI__68487DD7" Association="Self.FK__TRN_UserD__RoleI__68487DD7">
+            <End Role="MAS_Role" EntitySet="MAS_Role" />
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HomeFoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HomeFoodEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="HomeFoodModel.Customer" />
+          <EntitySet Name="MAS_AddressType" EntityType="HomeFoodModel.MAS_AddressType" />
+          <EntitySet Name="MAS_Area" EntityType="HomeFoodModel.MAS_Area" />
+          <EntitySet Name="MAS_Category" EntityType="HomeFoodModel.MAS_Category" />
+          <EntitySet Name="MAS_ChefType" EntityType="HomeFoodModel.MAS_ChefType" />
+          <EntitySet Name="MAS_City" EntityType="HomeFoodModel.MAS_City" />
+          <EntitySet Name="MAS_DeliveryLocation" EntityType="HomeFoodModel.MAS_DeliveryLocation" />
+          <EntitySet Name="MAS_Discount" EntityType="HomeFoodModel.MAS_Discount" />
+          <EntitySet Name="MAS_DiscountType" EntityType="HomeFoodModel.MAS_DiscountType" />
+          <EntitySet Name="MAS_Food" EntityType="HomeFoodModel.MAS_Food" />
+          <EntitySet Name="MAS_FoodType" EntityType="HomeFoodModel.MAS_FoodType" />
+          <EntitySet Name="MAS_MealPack" EntityType="HomeFoodModel.MAS_MealPack" />
+          <EntitySet Name="MAS_OrderStatus" EntityType="HomeFoodModel.MAS_OrderStatus" />
+          <EntitySet Name="MAS_OrderType" EntityType="HomeFoodModel.MAS_OrderType" />
+          <EntitySet Name="MAS_PaymentType" EntityType="HomeFoodModel.MAS_PaymentType" />
+          <EntitySet Name="MAS_Price" EntityType="HomeFoodModel.MAS_Price" />
+          <EntitySet Name="MAS_Role" EntityType="HomeFoodModel.MAS_Role" />
+          <EntitySet Name="TRN_ChefDetails" EntityType="HomeFoodModel.TRN_ChefDetails" />
+          <EntitySet Name="TRN_ChefOrder" EntityType="HomeFoodModel.TRN_ChefOrder" />
+          <EntitySet Name="TRN_ChefOtherDetails" EntityType="HomeFoodModel.TRN_ChefOtherDetails" />
+          <EntitySet Name="TRN_DeliveryDetails" EntityType="HomeFoodModel.TRN_DeliveryDetails" />
+          <EntitySet Name="TRN_LoginDetail" EntityType="HomeFoodModel.TRN_LoginDetail" />
+          <EntitySet Name="TRN_MapOrderToChef" EntityType="HomeFoodModel.TRN_MapOrderToChef" />
+          <EntitySet Name="TRN_MealPackMapping" EntityType="HomeFoodModel.TRN_MealPackMapping" />
+          <EntitySet Name="TRN_MealPackProcessing" EntityType="HomeFoodModel.TRN_MealPackProcessing" />
+          <EntitySet Name="TRN_Order" EntityType="HomeFoodModel.TRN_Order" />
+          <EntitySet Name="TRN_OrderAppliedDiscount" EntityType="HomeFoodModel.TRN_OrderAppliedDiscount" />
+          <EntitySet Name="TRN_OrderDetails" EntityType="HomeFoodModel.TRN_OrderDetails" />
+          <EntitySet Name="TRN_SpecialDiscount" EntityType="HomeFoodModel.TRN_SpecialDiscount" />
+          <EntitySet Name="TRN_UserAddressDetails" EntityType="HomeFoodModel.TRN_UserAddressDetails" />
+          <EntitySet Name="TRN_UserDetail" EntityType="HomeFoodModel.TRN_UserDetail" />
+          <AssociationSet Name="FK__TRN_UserA__Addre__6D0D32F4" Association="HomeFoodModel.FK__TRN_UserA__Addre__6D0D32F4">
+            <End Role="MAS_AddressType" EntitySet="MAS_AddressType" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Area__CityId__4316F928" Association="HomeFoodModel.FK__MAS_Area__CityId__4316F928">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="MAS_Area" EntitySet="MAS_Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Food__Catego__5535A963" Association="HomeFoodModel.FK__MAS_Food__Catego__5535A963">
+            <End Role="MAS_Category" EntitySet="MAS_Category" />
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__ChefT__76969D2E" Association="HomeFoodModel.FK__TRN_ChefD__ChefT__76969D2E">
+            <End Role="MAS_ChefType" EntitySet="MAS_ChefType" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__CityI__778AC167" Association="HomeFoodModel.FK__TRN_ChefD__CityI__778AC167">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__CityI__6EF57B66" Association="HomeFoodModel.FK__TRN_UserA__CityI__6EF57B66">
+            <End Role="MAS_City" EntitySet="MAS_City" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Deliv__151B244E" Association="HomeFoodModel.FK__TRN_Deliv__Deliv__151B244E">
+            <End Role="MAS_DeliveryLocation" EntitySet="MAS_DeliveryLocation" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__Deliv__6E01572D" Association="HomeFoodModel.FK__TRN_UserA__Deliv__6E01572D">
+            <End Role="MAS_DeliveryLocation" EntitySet="MAS_DeliveryLocation" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Disco__Disco__619B8048" Association="HomeFoodModel.FK__MAS_Disco__Disco__619B8048">
+            <End Role="MAS_DiscountType" EntitySet="MAS_DiscountType" />
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Disco__FoodI__60A75C0F" Association="HomeFoodModel.FK__MAS_Disco__FoodI__60A75C0F">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Disco__19DFD96B" Association="HomeFoodModel.FK__TRN_Order__Disco__19DFD96B">
+            <End Role="MAS_Discount" EntitySet="MAS_Discount" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Speci__Disco__0F624AF8" Association="HomeFoodModel.FK__TRN_Speci__Disco__0F624AF8">
+            <End Role="MAS_DiscountType" EntitySet="MAS_DiscountType" />
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Food__FoodTy__5629CD9C" Association="HomeFoodModel.FK__MAS_Food__FoodTy__5629CD9C">
+            <End Role="MAS_FoodType" EntitySet="MAS_FoodType" />
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_Price__FoodI__59FA5E80" Association="HomeFoodModel.FK__MAS_Price__FoodI__59FA5E80">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="MAS_Price" EntitySet="MAS_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__FoodI__245D67DE" Association="HomeFoodModel.FK__TRN_MealP__FoodI__245D67DE">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="TRN_MealPackMapping" EntitySet="TRN_MealPackMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__FoodI__0B91BA14" Association="HomeFoodModel.FK__TRN_Order__FoodI__0B91BA14">
+            <End Role="MAS_Food" EntitySet="MAS_Food" />
+            <End Role="TRN_OrderDetails" EntitySet="TRN_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefO__FoodT__7D439ABD" Association="HomeFoodModel.FK__TRN_ChefO__FoodT__7D439ABD">
+            <End Role="MAS_FoodType" EntitySet="MAS_FoodType" />
+            <End Role="TRN_ChefOtherDetails" EntitySet="TRN_ChefOtherDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAS_MealP__Order__1F98B2C1" Association="HomeFoodModel.FK__MAS_MealP__Order__1F98B2C1">
+            <End Role="MAS_OrderType" EntitySet="MAS_OrderType" />
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__MealP__236943A5" Association="HomeFoodModel.FK__TRN_MealP__MealP__236943A5">
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+            <End Role="TRN_MealPackMapping" EntitySet="TRN_MealPackMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__MealP__282DF8C2" Association="HomeFoodModel.FK__TRN_MealP__MealP__282DF8C2">
+            <End Role="MAS_MealPack" EntitySet="MAS_MealPack" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__05D8E0BE" Association="HomeFoodModel.FK__TRN_Order__Order__05D8E0BE">
+            <End Role="MAS_OrderStatus" EntitySet="MAS_OrderStatus" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__04E4BC85" Association="HomeFoodModel.FK__TRN_Order__Order__04E4BC85">
+            <End Role="MAS_OrderType" EntitySet="MAS_OrderType" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Payme__06CD04F7" Association="HomeFoodModel.FK__TRN_Order__Payme__06CD04F7">
+            <End Role="MAS_PaymentType" EntitySet="MAS_PaymentType" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserD__RoleI__68487DD7" Association="HomeFoodModel.FK__TRN_UserD__RoleI__68487DD7">
+            <End Role="MAS_Role" EntitySet="MAS_Role" />
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefD__UserI__787EE5A0" Association="HomeFoodModel.FK__TRN_ChefD__UserI__787EE5A0">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_ChefO__ChefI__7C4F7684" Association="HomeFoodModel.FK__TRN_ChefO__ChefI__7C4F7684">
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+            <End Role="TRN_ChefOtherDetails" EntitySet="TRN_ChefOtherDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MapOr__ChefI__31B762FC" Association="HomeFoodModel.FK__TRN_MapOr__ChefI__31B762FC">
+            <End Role="TRN_ChefDetails" EntitySet="TRN_ChefDetails" />
+            <End Role="TRN_MapOrderToChef" EntitySet="TRN_MapOrderToChef" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Addre__160F4887" Association="HomeFoodModel.FK__TRN_Deliv__Addre__160F4887">
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Deliv__Order__14270015" Association="HomeFoodModel.FK__TRN_Deliv__Order__14270015">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_DeliveryDetails" EntitySet="TRN_DeliveryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Login__UserI__72C60C4A" Association="HomeFoodModel.FK__TRN_Login__UserI__72C60C4A">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_LoginDetail" EntitySet="TRN_LoginDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MapOr__Order__30C33EC3" Association="HomeFoodModel.FK__TRN_MapOr__Order__30C33EC3">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_MapOrderToChef" EntitySet="TRN_MapOrderToChef" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__Order__2A164134" Association="HomeFoodModel.FK__TRN_MealP__Order__2A164134">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_MealP__UserI__29221CFB" Association="HomeFoodModel.FK__TRN_MealP__UserI__29221CFB">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_MealPackProcessing" EntitySet="TRN_MealPackProcessing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__0A9D95DB" Association="HomeFoodModel.FK__TRN_Order__Order__0A9D95DB">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_OrderDetails" EntitySet="TRN_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Order__1BC821DD" Association="HomeFoodModel.FK__TRN_Order__Order__1BC821DD">
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__UserI__03F0984C" Association="HomeFoodModel.FK__TRN_Order__UserI__03F0984C">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_Order" EntitySet="TRN_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Order__Speci__1AD3FDA4" Association="HomeFoodModel.FK__TRN_Order__Speci__1AD3FDA4">
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+            <End Role="TRN_OrderAppliedDiscount" EntitySet="TRN_OrderAppliedDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_Speci__UserI__10566F31" Association="HomeFoodModel.FK__TRN_Speci__UserI__10566F31">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_SpecialDiscount" EntitySet="TRN_SpecialDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRN_UserA__UserI__6C190EBB" Association="HomeFoodModel.FK__TRN_UserA__UserI__6C190EBB">
+            <End Role="TRN_UserDetail" EntitySet="TRN_UserDetail" />
+            <End Role="TRN_UserAddressDetails" EntitySet="TRN_UserAddressDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MAS_AddressType">
+          <Key>
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="AddressTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_UserAddressDetails" Relationship="HomeFoodModel.FK__TRN_UserA__Addre__6D0D32F4" FromRole="MAS_AddressType" ToRole="TRN_UserAddressDetails" />
+        </EntityType>
+        <EntityType Name="MAS_Area">
+          <Key>
+            <PropertyRef Name="UniqueId" />
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_City" Relationship="HomeFoodModel.FK__MAS_Area__CityId__4316F928" FromRole="MAS_Area" ToRole="MAS_City" />
+        </EntityType>
+        <EntityType Name="MAS_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__MAS_Food__Catego__5535A963" FromRole="MAS_Category" ToRole="MAS_Food" />
+        </EntityType>
+        <EntityType Name="MAS_ChefType">
+          <Key>
+            <PropertyRef Name="ChefTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="ChefTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChefType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_ChefDetails" Relationship="HomeFoodModel.FK__TRN_ChefD__ChefT__76969D2E" FromRole="MAS_ChefType" ToRole="TRN_ChefDetails" />
+        </EntityType>
+        <EntityType Name="MAS_City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Area" Relationship="HomeFoodModel.FK__MAS_Area__CityId__4316F928" FromRole="MAS_City" ToRole="MAS_Area" />
+          <NavigationProperty Name="TRN_ChefDetails" Relationship="HomeFoodModel.FK__TRN_ChefD__CityI__778AC167" FromRole="MAS_City" ToRole="TRN_ChefDetails" />
+          <NavigationProperty Name="TRN_UserAddressDetails" Relationship="HomeFoodModel.FK__TRN_UserA__CityI__6EF57B66" FromRole="MAS_City" ToRole="TRN_UserAddressDetails" />
+        </EntityType>
+        <EntityType Name="MAS_DeliveryLocation">
+          <Key>
+            <PropertyRef Name="DeliveyPointId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="DeliveyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeliveryPointName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_DeliveryDetails" Relationship="HomeFoodModel.FK__TRN_Deliv__Deliv__151B244E" FromRole="MAS_DeliveryLocation" ToRole="TRN_DeliveryDetails" />
+          <NavigationProperty Name="TRN_UserAddressDetails" Relationship="HomeFoodModel.FK__TRN_UserA__Deliv__6E01572D" FromRole="MAS_DeliveryLocation" ToRole="TRN_UserAddressDetails" />
+        </EntityType>
+        <EntityType Name="MAS_Discount">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="DiscountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FoodId" Type="Int32" />
+          <Property Name="DiscountTypeID" Type="Int32" />
+          <Property Name="DiscountPrice" Type="Int32" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="Int32" Nullable="false" />
+          <Property Name="ValidityFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidityTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_DiscountType" Relationship="HomeFoodModel.FK__MAS_Disco__Disco__619B8048" FromRole="MAS_Discount" ToRole="MAS_DiscountType" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__MAS_Disco__FoodI__60A75C0F" FromRole="MAS_Discount" ToRole="MAS_Food" />
+          <NavigationProperty Name="TRN_OrderAppliedDiscount" Relationship="HomeFoodModel.FK__TRN_Order__Disco__19DFD96B" FromRole="MAS_Discount" ToRole="TRN_OrderAppliedDiscount" />
+        </EntityType>
+        <EntityType Name="MAS_DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeID" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="DiscountTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Discount" Relationship="HomeFoodModel.FK__MAS_Disco__Disco__619B8048" FromRole="MAS_DiscountType" ToRole="MAS_Discount" />
+          <NavigationProperty Name="TRN_SpecialDiscount" Relationship="HomeFoodModel.FK__TRN_Speci__Disco__0F624AF8" FromRole="MAS_DiscountType" ToRole="TRN_SpecialDiscount" />
+        </EntityType>
+        <EntityType Name="MAS_Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="FoodTypeID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Category" Relationship="HomeFoodModel.FK__MAS_Food__Catego__5535A963" FromRole="MAS_Food" ToRole="MAS_Category" />
+          <NavigationProperty Name="MAS_Discount" Relationship="HomeFoodModel.FK__MAS_Disco__FoodI__60A75C0F" FromRole="MAS_Food" ToRole="MAS_Discount" />
+          <NavigationProperty Name="MAS_FoodType" Relationship="HomeFoodModel.FK__MAS_Food__FoodTy__5629CD9C" FromRole="MAS_Food" ToRole="MAS_FoodType" />
+          <NavigationProperty Name="MAS_Price" Relationship="HomeFoodModel.FK__MAS_Price__FoodI__59FA5E80" FromRole="MAS_Food" ToRole="MAS_Price" />
+          <NavigationProperty Name="TRN_MealPackMapping" Relationship="HomeFoodModel.FK__TRN_MealP__FoodI__245D67DE" FromRole="MAS_Food" ToRole="TRN_MealPackMapping" />
+          <NavigationProperty Name="TRN_OrderDetails" Relationship="HomeFoodModel.FK__TRN_Order__FoodI__0B91BA14" FromRole="MAS_Food" ToRole="TRN_OrderDetails" />
+        </EntityType>
+        <EntityType Name="MAS_FoodType">
+          <Key>
+            <PropertyRef Name="FoodTypeID" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="FoodTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FoodTypeCode" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__MAS_Food__FoodTy__5629CD9C" FromRole="MAS_FoodType" ToRole="MAS_Food" />
+          <NavigationProperty Name="TRN_ChefOtherDetails" Relationship="HomeFoodModel.FK__TRN_ChefO__FoodT__7D439ABD" FromRole="MAS_FoodType" ToRole="TRN_ChefOtherDetails" />
+        </EntityType>
+        <EntityType Name="MAS_MealPack">
+          <Key>
+            <PropertyRef Name="MealPackId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="MealPackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MealPackName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TotalMealCount" Type="Int32" Nullable="false" />
+          <Property Name="CurrentMealCount" Type="Int32" Nullable="false" />
+          <Property Name="CurrentPrice" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
+          <Property Name="GSTPrice" Type="Int32" Nullable="false" />
+          <Property Name="GSTPercentage" Type="Int32" Nullable="false" />
+          <Property Name="OrderTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OrderTypeCode" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_OrderType" Relationship="HomeFoodModel.FK__MAS_MealP__Order__1F98B2C1" FromRole="MAS_MealPack" ToRole="MAS_OrderType" />
+          <NavigationProperty Name="TRN_MealPackMapping" Relationship="HomeFoodModel.FK__TRN_MealP__MealP__236943A5" FromRole="MAS_MealPack" ToRole="TRN_MealPackMapping" />
+          <NavigationProperty Name="TRN_MealPackProcessing" Relationship="HomeFoodModel.FK__TRN_MealP__MealP__282DF8C2" FromRole="MAS_MealPack" ToRole="TRN_MealPackProcessing" />
+        </EntityType>
+        <EntityType Name="MAS_OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__Order__05D8E0BE" FromRole="MAS_OrderStatus" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="MAS_OrderType">
+          <Key>
+            <PropertyRef Name="OrderTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="OrderTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_MealPack" Relationship="HomeFoodModel.FK__MAS_MealP__Order__1F98B2C1" FromRole="MAS_OrderType" ToRole="MAS_MealPack" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__Order__04E4BC85" FromRole="MAS_OrderType" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="MAS_PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__Payme__06CD04F7" FromRole="MAS_PaymentType" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="MAS_Price">
+          <Key>
+            <PropertyRef Name="PriceId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="PriceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTPercentage" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__MAS_Price__FoodI__59FA5E80" FromRole="MAS_Price" ToRole="MAS_Food" />
+        </EntityType>
+        <EntityType Name="MAS_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_UserD__RoleI__68487DD7" FromRole="MAS_Role" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_ChefDetails">
+          <Key>
+            <PropertyRef Name="ChefId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="ChefId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChefFullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ChefTypeId" Type="Int32" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AlternateMobileNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_ChefType" Relationship="HomeFoodModel.FK__TRN_ChefD__ChefT__76969D2E" FromRole="TRN_ChefDetails" ToRole="MAS_ChefType" />
+          <NavigationProperty Name="MAS_City" Relationship="HomeFoodModel.FK__TRN_ChefD__CityI__778AC167" FromRole="TRN_ChefDetails" ToRole="MAS_City" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_ChefD__UserI__787EE5A0" FromRole="TRN_ChefDetails" ToRole="TRN_UserDetail" />
+          <NavigationProperty Name="TRN_ChefOtherDetails" Relationship="HomeFoodModel.FK__TRN_ChefO__ChefI__7C4F7684" FromRole="TRN_ChefDetails" ToRole="TRN_ChefOtherDetails" />
+          <NavigationProperty Name="TRN_MapOrderToChef" Relationship="HomeFoodModel.FK__TRN_MapOr__ChefI__31B762FC" FromRole="TRN_ChefDetails" ToRole="TRN_MapOrderToChef" />
+        </EntityType>
+        <EntityType Name="TRN_ChefOrder">
+          <Key>
+            <PropertyRef Name="ChefOrderId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="ChefOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderGivenDatetime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ChefDeliveredDateTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="AssignedPickUpDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AssignedPickUpTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TaskStatusID" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_ChefOtherDetails">
+          <Key>
+            <PropertyRef Name="ChefOtherDetailID" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="ChefOtherDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChefId" Type="Int32" Nullable="false" />
+          <Property Name="FoodTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SpecialistAt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AvaiableDays" Type="Int32" />
+          <Property Name="AvailableTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AvaiableForLunch" Type="Boolean" Nullable="false" />
+          <Property Name="AvailableForDinner" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_FoodType" Relationship="HomeFoodModel.FK__TRN_ChefO__FoodT__7D439ABD" FromRole="TRN_ChefOtherDetails" ToRole="MAS_FoodType" />
+          <NavigationProperty Name="TRN_ChefDetails" Relationship="HomeFoodModel.FK__TRN_ChefO__ChefI__7C4F7684" FromRole="TRN_ChefOtherDetails" ToRole="TRN_ChefDetails" />
+        </EntityType>
+        <EntityType Name="TRN_DeliveryDetails">
+          <Key>
+            <PropertyRef Name="DeliveryDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="DeliveryDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScheduleDeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelivered" Type="Boolean" />
+          <Property Name="DeliveryPointId" Type="Int32" Nullable="false" />
+          <Property Name="AddressDetailId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_DeliveryLocation" Relationship="HomeFoodModel.FK__TRN_Deliv__Deliv__151B244E" FromRole="TRN_DeliveryDetails" ToRole="MAS_DeliveryLocation" />
+          <NavigationProperty Name="TRN_UserAddressDetails" Relationship="HomeFoodModel.FK__TRN_Deliv__Addre__160F4887" FromRole="TRN_DeliveryDetails" ToRole="TRN_UserAddressDetails" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Deliv__Order__14270015" FromRole="TRN_DeliveryDetails" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="TRN_LoginDetail">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_Login__UserI__72C60C4A" FromRole="TRN_LoginDetail" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_MapOrderToChef">
+          <Key>
+            <PropertyRef Name="MapOrderID" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="MapOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ChefId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRN_ChefDetails" Relationship="HomeFoodModel.FK__TRN_MapOr__ChefI__31B762FC" FromRole="TRN_MapOrderToChef" ToRole="TRN_ChefDetails" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_MapOr__Order__30C33EC3" FromRole="TRN_MapOrderToChef" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="TRN_MealPackMapping">
+          <Key>
+            <PropertyRef Name="MealPackMappingId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="MealPackMappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MealPackId" Type="Int32" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__TRN_MealP__FoodI__245D67DE" FromRole="TRN_MealPackMapping" ToRole="MAS_Food" />
+          <NavigationProperty Name="MAS_MealPack" Relationship="HomeFoodModel.FK__TRN_MealP__MealP__236943A5" FromRole="TRN_MealPackMapping" ToRole="MAS_MealPack" />
+        </EntityType>
+        <EntityType Name="TRN_MealPackProcessing">
+          <Key>
+            <PropertyRef Name="MealPackProcessingId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="MealPackProcessingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MealPackId" Type="Int32" Nullable="false" />
+          <Property Name="TotalMealCount" Type="Int32" Nullable="false" />
+          <Property Name="UsedMealCount" Type="Int32" Nullable="false" />
+          <Property Name="RemainingMealCount" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDates" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_MealPack" Relationship="HomeFoodModel.FK__TRN_MealP__MealP__282DF8C2" FromRole="TRN_MealPackProcessing" ToRole="MAS_MealPack" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_MealP__Order__2A164134" FromRole="TRN_MealPackProcessing" ToRole="TRN_Order" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_MealP__UserI__29221CFB" FromRole="TRN_MealPackProcessing" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="OrderTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+          <Property Name="OrderCreatedDatetime" Type="DateTime" Precision="3" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Int32" />
+          <Property Name="ActualPrice" Type="Int32" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <Property Name="TotalDiscount" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_OrderStatus" Relationship="HomeFoodModel.FK__TRN_Order__Order__05D8E0BE" FromRole="TRN_Order" ToRole="MAS_OrderStatus" />
+          <NavigationProperty Name="MAS_OrderType" Relationship="HomeFoodModel.FK__TRN_Order__Order__04E4BC85" FromRole="TRN_Order" ToRole="MAS_OrderType" />
+          <NavigationProperty Name="MAS_PaymentType" Relationship="HomeFoodModel.FK__TRN_Order__Payme__06CD04F7" FromRole="TRN_Order" ToRole="MAS_PaymentType" />
+          <NavigationProperty Name="TRN_DeliveryDetails" Relationship="HomeFoodModel.FK__TRN_Deliv__Order__14270015" FromRole="TRN_Order" ToRole="TRN_DeliveryDetails" />
+          <NavigationProperty Name="TRN_MapOrderToChef" Relationship="HomeFoodModel.FK__TRN_MapOr__Order__30C33EC3" FromRole="TRN_Order" ToRole="TRN_MapOrderToChef" />
+          <NavigationProperty Name="TRN_MealPackProcessing" Relationship="HomeFoodModel.FK__TRN_MealP__Order__2A164134" FromRole="TRN_Order" ToRole="TRN_MealPackProcessing" />
+          <NavigationProperty Name="TRN_OrderDetails" Relationship="HomeFoodModel.FK__TRN_Order__Order__0A9D95DB" FromRole="TRN_Order" ToRole="TRN_OrderDetails" />
+          <NavigationProperty Name="TRN_OrderAppliedDiscount" Relationship="HomeFoodModel.FK__TRN_Order__Order__1BC821DD" FromRole="TRN_Order" ToRole="TRN_OrderAppliedDiscount" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_Order__UserI__03F0984C" FromRole="TRN_Order" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_OrderAppliedDiscount">
+          <Key>
+            <PropertyRef Name="AppliedDiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="AppliedDiscountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountId" Type="Int32" Nullable="false" />
+          <Property Name="SpecialDiscountId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MAS_Discount" Relationship="HomeFoodModel.FK__TRN_Order__Disco__19DFD96B" FromRole="TRN_OrderAppliedDiscount" ToRole="MAS_Discount" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__Order__1BC821DD" FromRole="TRN_OrderAppliedDiscount" ToRole="TRN_Order" />
+          <NavigationProperty Name="TRN_SpecialDiscount" Relationship="HomeFoodModel.FK__TRN_Order__Speci__1AD3FDA4" FromRole="TRN_OrderAppliedDiscount" ToRole="TRN_SpecialDiscount" />
+        </EntityType>
+        <EntityType Name="TRN_OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Food" Relationship="HomeFoodModel.FK__TRN_Order__FoodI__0B91BA14" FromRole="TRN_OrderDetails" ToRole="MAS_Food" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__Order__0A9D95DB" FromRole="TRN_OrderDetails" ToRole="TRN_Order" />
+        </EntityType>
+        <EntityType Name="TRN_SpecialDiscount">
+          <Key>
+            <PropertyRef Name="SpecialDiscountId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="SpecialDiscountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DiscountTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsDiscountUsed" Type="Boolean" Nullable="false" />
+          <Property Name="DiscountPrice" Type="Int32" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="Int32" Nullable="false" />
+          <Property Name="ValidityFrom" Type="DateTime" Precision="3" />
+          <Property Name="ValidityTo" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_DiscountType" Relationship="HomeFoodModel.FK__TRN_Speci__Disco__0F624AF8" FromRole="TRN_SpecialDiscount" ToRole="MAS_DiscountType" />
+          <NavigationProperty Name="TRN_OrderAppliedDiscount" Relationship="HomeFoodModel.FK__TRN_Order__Speci__1AD3FDA4" FromRole="TRN_SpecialDiscount" ToRole="TRN_OrderAppliedDiscount" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_Speci__UserI__10566F31" FromRole="TRN_SpecialDiscount" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_UserAddressDetails">
+          <Key>
+            <PropertyRef Name="AddressDetailId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="AddressDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AddressTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryPointId" Type="Int32" Nullable="false" />
+          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_AddressType" Relationship="HomeFoodModel.FK__TRN_UserA__Addre__6D0D32F4" FromRole="TRN_UserAddressDetails" ToRole="MAS_AddressType" />
+          <NavigationProperty Name="MAS_City" Relationship="HomeFoodModel.FK__TRN_UserA__CityI__6EF57B66" FromRole="TRN_UserAddressDetails" ToRole="MAS_City" />
+          <NavigationProperty Name="MAS_DeliveryLocation" Relationship="HomeFoodModel.FK__TRN_UserA__Deliv__6E01572D" FromRole="TRN_UserAddressDetails" ToRole="MAS_DeliveryLocation" />
+          <NavigationProperty Name="TRN_DeliveryDetails" Relationship="HomeFoodModel.FK__TRN_Deliv__Addre__160F4887" FromRole="TRN_UserAddressDetails" ToRole="TRN_DeliveryDetails" />
+          <NavigationProperty Name="TRN_UserDetail" Relationship="HomeFoodModel.FK__TRN_UserA__UserI__6C190EBB" FromRole="TRN_UserAddressDetails" ToRole="TRN_UserDetail" />
+        </EntityType>
+        <EntityType Name="TRN_UserDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAS_Role" Relationship="HomeFoodModel.FK__TRN_UserD__RoleI__68487DD7" FromRole="TRN_UserDetail" ToRole="MAS_Role" />
+          <NavigationProperty Name="TRN_ChefDetails" Relationship="HomeFoodModel.FK__TRN_ChefD__UserI__787EE5A0" FromRole="TRN_UserDetail" ToRole="TRN_ChefDetails" />
+          <NavigationProperty Name="TRN_LoginDetail" Relationship="HomeFoodModel.FK__TRN_Login__UserI__72C60C4A" FromRole="TRN_UserDetail" ToRole="TRN_LoginDetail" />
+          <NavigationProperty Name="TRN_MealPackProcessing" Relationship="HomeFoodModel.FK__TRN_MealP__UserI__29221CFB" FromRole="TRN_UserDetail" ToRole="TRN_MealPackProcessing" />
+          <NavigationProperty Name="TRN_Order" Relationship="HomeFoodModel.FK__TRN_Order__UserI__03F0984C" FromRole="TRN_UserDetail" ToRole="TRN_Order" />
+          <NavigationProperty Name="TRN_SpecialDiscount" Relationship="HomeFoodModel.FK__TRN_Speci__UserI__10566F31" FromRole="TRN_UserDetail" ToRole="TRN_SpecialDiscount" />
+          <NavigationProperty Name="TRN_UserAddressDetails" Relationship="HomeFoodModel.FK__TRN_UserA__UserI__6C190EBB" FromRole="TRN_UserDetail" ToRole="TRN_UserAddressDetails" />
+        </EntityType>
+        <Association Name="FK__TRN_UserA__Addre__6D0D32F4">
+          <End Type="HomeFoodModel.MAS_AddressType" Role="MAS_AddressType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_UserAddressDetails" Role="TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_AddressType">
+              <PropertyRef Name="AddressTypeId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Area__CityId__4316F928">
+          <End Type="HomeFoodModel.MAS_City" Role="MAS_City" Multiplicity="0..1" />
+          <End Type="HomeFoodModel.MAS_Area" Role="MAS_Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="MAS_Area">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Food__Catego__5535A963">
+          <End Type="HomeFoodModel.MAS_Category" Role="MAS_Category" Multiplicity="0..1" />
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="MAS_Food">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__ChefT__76969D2E">
+          <End Type="HomeFoodModel.MAS_ChefType" Role="MAS_ChefType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_ChefDetails" Role="TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_ChefType">
+              <PropertyRef Name="ChefTypeId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__CityI__778AC167">
+          <End Type="HomeFoodModel.MAS_City" Role="MAS_City" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_ChefDetails" Role="TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__CityI__6EF57B66">
+          <End Type="HomeFoodModel.MAS_City" Role="MAS_City" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_UserAddressDetails" Role="TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Deliv__151B244E">
+          <End Type="HomeFoodModel.MAS_DeliveryLocation" Role="MAS_DeliveryLocation" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_DeliveryDetails" Role="TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DeliveryLocation">
+              <PropertyRef Name="DeliveyPointId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="DeliveryPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__Deliv__6E01572D">
+          <End Type="HomeFoodModel.MAS_DeliveryLocation" Role="MAS_DeliveryLocation" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_UserAddressDetails" Role="TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DeliveryLocation">
+              <PropertyRef Name="DeliveyPointId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="DeliveryPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Disco__Disco__619B8048">
+          <End Type="HomeFoodModel.MAS_DiscountType" Role="MAS_DiscountType" Multiplicity="0..1" />
+          <End Type="HomeFoodModel.MAS_Discount" Role="MAS_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="MAS_Discount">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Disco__FoodI__60A75C0F">
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="0..1" />
+          <End Type="HomeFoodModel.MAS_Discount" Role="MAS_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MAS_Discount">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Disco__19DFD96B">
+          <End Type="HomeFoodModel.MAS_Discount" Role="MAS_Discount" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_OrderAppliedDiscount" Role="TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Discount">
+              <PropertyRef Name="DiscountId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="DiscountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Speci__Disco__0F624AF8">
+          <End Type="HomeFoodModel.MAS_DiscountType" Role="MAS_DiscountType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_SpecialDiscount" Role="TRN_SpecialDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="TRN_SpecialDiscount">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Food__FoodTy__5629CD9C">
+          <End Type="HomeFoodModel.MAS_FoodType" Role="MAS_FoodType" Multiplicity="0..1" />
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_FoodType">
+              <PropertyRef Name="FoodTypeID" />
+            </Principal>
+            <Dependent Role="MAS_Food">
+              <PropertyRef Name="FoodTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_Price__FoodI__59FA5E80">
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="1" />
+          <End Type="HomeFoodModel.MAS_Price" Role="MAS_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MAS_Price">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__FoodI__245D67DE">
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MealPackMapping" Role="TRN_MealPackMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackMapping">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__FoodI__0B91BA14">
+          <End Type="HomeFoodModel.MAS_Food" Role="MAS_Food" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_OrderDetails" Role="TRN_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="TRN_OrderDetails">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefO__FoodT__7D439ABD">
+          <End Type="HomeFoodModel.MAS_FoodType" Role="MAS_FoodType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_ChefOtherDetails" Role="TRN_ChefOtherDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_FoodType">
+              <PropertyRef Name="FoodTypeID" />
+            </Principal>
+            <Dependent Role="TRN_ChefOtherDetails">
+              <PropertyRef Name="FoodTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAS_MealP__Order__1F98B2C1">
+          <End Type="HomeFoodModel.MAS_OrderType" Role="MAS_OrderType" Multiplicity="1" />
+          <End Type="HomeFoodModel.MAS_MealPack" Role="MAS_MealPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderType">
+              <PropertyRef Name="OrderTypeId" />
+            </Principal>
+            <Dependent Role="MAS_MealPack">
+              <PropertyRef Name="OrderTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__MealP__236943A5">
+          <End Type="HomeFoodModel.MAS_MealPack" Role="MAS_MealPack" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MealPackMapping" Role="TRN_MealPackMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_MealPack">
+              <PropertyRef Name="MealPackId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackMapping">
+              <PropertyRef Name="MealPackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__MealP__282DF8C2">
+          <End Type="HomeFoodModel.MAS_MealPack" Role="MAS_MealPack" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MealPackProcessing" Role="TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_MealPack">
+              <PropertyRef Name="MealPackId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="MealPackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__05D8E0BE">
+          <End Type="HomeFoodModel.MAS_OrderStatus" Role="MAS_OrderStatus" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderStatus">
+              <PropertyRef Name="OrderStatusId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="OrderStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__04E4BC85">
+          <End Type="HomeFoodModel.MAS_OrderType" Role="MAS_OrderType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_OrderType">
+              <PropertyRef Name="OrderTypeId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="OrderTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Payme__06CD04F7">
+          <End Type="HomeFoodModel.MAS_PaymentType" Role="MAS_PaymentType" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_PaymentType">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserD__RoleI__68487DD7">
+          <End Type="HomeFoodModel.MAS_Role" Role="MAS_Role" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAS_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TRN_UserDetail">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefD__UserI__787EE5A0">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_ChefDetails" Role="TRN_ChefDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_ChefDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_ChefO__ChefI__7C4F7684">
+          <End Type="HomeFoodModel.TRN_ChefDetails" Role="TRN_ChefDetails" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_ChefOtherDetails" Role="TRN_ChefOtherDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefId" />
+            </Principal>
+            <Dependent Role="TRN_ChefOtherDetails">
+              <PropertyRef Name="ChefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MapOr__ChefI__31B762FC">
+          <End Type="HomeFoodModel.TRN_ChefDetails" Role="TRN_ChefDetails" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MapOrderToChef" Role="TRN_MapOrderToChef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_ChefDetails">
+              <PropertyRef Name="ChefId" />
+            </Principal>
+            <Dependent Role="TRN_MapOrderToChef">
+              <PropertyRef Name="ChefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Addre__160F4887">
+          <End Type="HomeFoodModel.TRN_UserAddressDetails" Role="TRN_UserAddressDetails" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_DeliveryDetails" Role="TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserAddressDetails">
+              <PropertyRef Name="AddressDetailId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="AddressDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Deliv__Order__14270015">
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_DeliveryDetails" Role="TRN_DeliveryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_DeliveryDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Login__UserI__72C60C4A">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_LoginDetail" Role="TRN_LoginDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_LoginDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MapOr__Order__30C33EC3">
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MapOrderToChef" Role="TRN_MapOrderToChef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_MapOrderToChef">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__Order__2A164134">
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MealPackProcessing" Role="TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_MealP__UserI__29221CFB">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_MealPackProcessing" Role="TRN_MealPackProcessing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_MealPackProcessing">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__0A9D95DB">
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_OrderDetails" Role="TRN_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Order__1BC821DD">
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_OrderAppliedDiscount" Role="TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__UserI__03F0984C">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_Order" Role="TRN_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Order__Speci__1AD3FDA4">
+          <End Type="HomeFoodModel.TRN_SpecialDiscount" Role="TRN_SpecialDiscount" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_OrderAppliedDiscount" Role="TRN_OrderAppliedDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SpecialDiscount">
+              <PropertyRef Name="SpecialDiscountId" />
+            </Principal>
+            <Dependent Role="TRN_OrderAppliedDiscount">
+              <PropertyRef Name="SpecialDiscountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_Speci__UserI__10566F31">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_SpecialDiscount" Role="TRN_SpecialDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_SpecialDiscount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRN_UserA__UserI__6C190EBB">
+          <End Type="HomeFoodModel.TRN_UserDetail" Role="TRN_UserDetail" Multiplicity="1" />
+          <End Type="HomeFoodModel.TRN_UserAddressDetails" Role="TRN_UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_UserDetail">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TRN_UserAddressDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="homefoodModelStoreContainer" CdmEntityContainer="HomeFoodEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="HomeFoodModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_AddressType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_AddressType">
+              <MappingFragment StoreEntitySet="MAS_AddressType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Area">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Area">
+              <MappingFragment StoreEntitySet="MAS_Area">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Category">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Category">
+              <MappingFragment StoreEntitySet="MAS_Category">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_ChefType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_ChefType">
+              <MappingFragment StoreEntitySet="MAS_ChefType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ChefType" ColumnName="ChefType" />
+                <ScalarProperty Name="ChefTypeId" ColumnName="ChefTypeId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_City">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_City">
+              <MappingFragment StoreEntitySet="MAS_City">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_DeliveryLocation">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_DeliveryLocation">
+              <MappingFragment StoreEntitySet="MAS_DeliveryLocation">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="DeliveryPointName" ColumnName="DeliveryPointName" />
+                <ScalarProperty Name="DeliveyPointId" ColumnName="DeliveyPointId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Discount">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Discount">
+              <MappingFragment StoreEntitySet="MAS_Discount">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ValidityTo" ColumnName="ValidityTo" />
+                <ScalarProperty Name="ValidityFrom" ColumnName="ValidityFrom" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="DiscountTypeID" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="DiscountName" ColumnName="DiscountName" />
+                <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_DiscountType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_DiscountType">
+              <MappingFragment StoreEntitySet="MAS_DiscountType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+                <ScalarProperty Name="DiscountTypeID" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Food">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Food">
+              <MappingFragment StoreEntitySet="MAS_Food">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_FoodType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_FoodType">
+              <MappingFragment StoreEntitySet="MAS_FoodType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FoodTypeCode" ColumnName="FoodTypeCode" />
+                <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+                <ScalarProperty Name="FoodTypeID" ColumnName="FoodTypeID" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_MealPack">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_MealPack">
+              <MappingFragment StoreEntitySet="MAS_MealPack">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OrderTypeCode" ColumnName="OrderTypeCode" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="GSTPercentage" ColumnName="GSTPercentage" />
+                <ScalarProperty Name="GSTPrice" ColumnName="GSTPrice" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+                <ScalarProperty Name="CurrentMealCount" ColumnName="CurrentMealCount" />
+                <ScalarProperty Name="TotalMealCount" ColumnName="TotalMealCount" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="MealPackName" ColumnName="MealPackName" />
+                <ScalarProperty Name="MealPackId" ColumnName="MealPackId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_OrderStatus">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_OrderStatus">
+              <MappingFragment StoreEntitySet="MAS_OrderStatus">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_OrderType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_OrderType">
+              <MappingFragment StoreEntitySet="MAS_OrderType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="OrderTypeCode" ColumnName="OrderTypeCode" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_PaymentType">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_PaymentType">
+              <MappingFragment StoreEntitySet="MAS_PaymentType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Price">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Price">
+              <MappingFragment StoreEntitySet="MAS_Price">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="GSTPercentage" ColumnName="GSTPercentage" />
+                <ScalarProperty Name="GSTPrice" ColumnName="GSTPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAS_Role">
+            <EntityTypeMapping TypeName="HomeFoodModel.MAS_Role">
+              <MappingFragment StoreEntitySet="MAS_Role">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_ChefDetails">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_ChefDetails">
+              <MappingFragment StoreEntitySet="TRN_ChefDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AlternateMobileNumber" ColumnName="AlternateMobileNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ChefTypeId" ColumnName="ChefTypeId" />
+                <ScalarProperty Name="ChefFullName" ColumnName="ChefFullName" />
+                <ScalarProperty Name="ChefId" ColumnName="ChefId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_ChefOrder">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_ChefOrder">
+              <MappingFragment StoreEntitySet="TRN_ChefOrder">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="TaskStatusID" ColumnName="TaskStatusID" />
+                <ScalarProperty Name="AssignedPickUpTime" ColumnName="AssignedPickUpTime" />
+                <ScalarProperty Name="AssignedPickUpDate" ColumnName="AssignedPickUpDate" />
+                <ScalarProperty Name="ChefDeliveredDateTime" ColumnName="ChefDeliveredDateTime" />
+                <ScalarProperty Name="OrderGivenDatetime" ColumnName="OrderGivenDatetime" />
+                <ScalarProperty Name="ChefOrderId" ColumnName="ChefOrderId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_ChefOtherDetails">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_ChefOtherDetails">
+              <MappingFragment StoreEntitySet="TRN_ChefOtherDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AvailableForDinner" ColumnName="AvailableForDinner" />
+                <ScalarProperty Name="AvaiableForLunch" ColumnName="AvaiableForLunch" />
+                <ScalarProperty Name="AvailableTime" ColumnName="AvailableTime" />
+                <ScalarProperty Name="AvaiableDays" ColumnName="AvaiableDays" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="SpecialistAt" ColumnName="SpecialistAt" />
+                <ScalarProperty Name="FoodTypeId" ColumnName="FoodTypeId" />
+                <ScalarProperty Name="ChefId" ColumnName="ChefId" />
+                <ScalarProperty Name="ChefOtherDetailID" ColumnName="ChefOtherDetailID" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_DeliveryDetails">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_DeliveryDetails">
+              <MappingFragment StoreEntitySet="TRN_DeliveryDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AddressDetailId" ColumnName="AddressDetailId" />
+                <ScalarProperty Name="DeliveryPointId" ColumnName="DeliveryPointId" />
+                <ScalarProperty Name="IsDelivered" ColumnName="IsDelivered" />
+                <ScalarProperty Name="ScheduleDeliveryDate" ColumnName="ScheduleDeliveryDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="DeliveryDetailId" ColumnName="DeliveryDetailId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_LoginDetail">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_LoginDetail">
+              <MappingFragment StoreEntitySet="TRN_LoginDetail">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_MapOrderToChef">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_MapOrderToChef">
+              <MappingFragment StoreEntitySet="TRN_MapOrderToChef">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ChefId" ColumnName="ChefId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="MapOrderID" ColumnName="MapOrderID" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_MealPackMapping">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_MealPackMapping">
+              <MappingFragment StoreEntitySet="TRN_MealPackMapping">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="MealPackId" ColumnName="MealPackId" />
+                <ScalarProperty Name="MealPackMappingId" ColumnName="MealPackMappingId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_MealPackProcessing">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_MealPackProcessing">
+              <MappingFragment StoreEntitySet="TRN_MealPackProcessing">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ScheduleDates" ColumnName="ScheduleDates" />
+                <ScalarProperty Name="RemainingMealCount" ColumnName="RemainingMealCount" />
+                <ScalarProperty Name="UsedMealCount" ColumnName="UsedMealCount" />
+                <ScalarProperty Name="TotalMealCount" ColumnName="TotalMealCount" />
+                <ScalarProperty Name="MealPackId" ColumnName="MealPackId" />
+                <ScalarProperty Name="MealPackProcessingId" ColumnName="MealPackProcessingId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_Order">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_Order">
+              <MappingFragment StoreEntitySet="TRN_Order">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="ActualPrice" ColumnName="ActualPrice" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="OrderCreatedDatetime" ColumnName="OrderCreatedDatetime" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_OrderAppliedDiscount">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_OrderAppliedDiscount">
+              <MappingFragment StoreEntitySet="TRN_OrderAppliedDiscount">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SpecialDiscountId" ColumnName="SpecialDiscountId" />
+                <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />
+                <ScalarProperty Name="AppliedDiscountId" ColumnName="AppliedDiscountId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_OrderDetails">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_OrderDetails">
+              <MappingFragment StoreEntitySet="TRN_OrderDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_SpecialDiscount">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_SpecialDiscount">
+              <MappingFragment StoreEntitySet="TRN_SpecialDiscount">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ValidityTo" ColumnName="ValidityTo" />
+                <ScalarProperty Name="ValidityFrom" ColumnName="ValidityFrom" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="IsDiscountUsed" ColumnName="IsDiscountUsed" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="DiscountTypeID" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountName" ColumnName="DiscountName" />
+                <ScalarProperty Name="SpecialDiscountId" ColumnName="SpecialDiscountId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_UserAddressDetails">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_UserAddressDetails">
+              <MappingFragment StoreEntitySet="TRN_UserAddressDetails">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="DeliveryPointId" ColumnName="DeliveryPointId" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AddressDetailId" ColumnName="AddressDetailId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_UserDetail">
+            <EntityTypeMapping TypeName="HomeFoodModel.TRN_UserDetail">
+              <MappingFragment StoreEntitySet="TRN_UserDetail">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

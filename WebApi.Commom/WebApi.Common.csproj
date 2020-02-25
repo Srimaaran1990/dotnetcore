@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>WebApi.Common</AssemblyName>
+    <RootNamespace>WebApi.Common</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.513" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Entites\Entites.csproj" />
+    <ProjectReference Include="..\Implementation\Implementation.csproj" />
+    <ProjectReference Include="..\Interface\IBusiness.csproj" />
+  </ItemGroup>
+
+</Project>

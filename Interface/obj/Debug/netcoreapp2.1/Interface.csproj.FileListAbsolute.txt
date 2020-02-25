@@ -1,0 +1,14 @@
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.csprojAssemblyReference.cache
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.csproj.CoreCompileInputs.cache
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.AssemblyInfoInputs.cache
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.AssemblyInfo.cs
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Interface.deps.json
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Interface.dll
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Interface.pdb
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Entites.dll
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Utilities.dll
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Entites.pdb
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\bin\Debug\netcoreapp2.1\Utilities.pdb
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.csproj.CopyComplete
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.dll
+F:\Projects\Arch\V2\dotnetcore20arch\Interface\obj\Debug\netcoreapp2.1\Interface.pdb
